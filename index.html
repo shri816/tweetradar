@@ -327,8 +327,8 @@
             }
         }
         
-        // Enhanced Search Function
-        const performSearch = utils.debounce(() => {
+        // Enhanced Search Function - Only triggers on button click or Enter
+        function performSearch() {
             const { searchTerm, timeFilter, sortBy } = stateManager.state;
             
             if (!searchTerm.trim()) {
@@ -370,7 +370,7 @@
                 ToastManager.show(`Found ${sortedTweets.length} viral tweets!`, 'success');
                 
             }, 1200);
-        }, 300);
+        }
         
         // Event Handlers
         const handlers = {
@@ -380,14 +380,14 @@
             
             updateSortBy: (value) => {
                 stateManager.setState({ sortBy: value });
-                if (stateManager.state.searchPerformed) {
+                if (stateManager.state.searchPerformed && stateManager.state.searchTerm.trim()) {
                     performSearch();
                 }
             },
             
             updateTimeFilter: (value) => {
                 stateManager.setState({ timeFilter: value });
-                if (stateManager.state.searchPerformed) {
+                if (stateManager.state.searchPerformed && stateManager.state.searchTerm.trim()) {
                     performSearch();
                 }
             },
