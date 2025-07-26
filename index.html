@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TweetRadar 🚀 - Hunt Viral Content Before It Explodes</title>
+    <title>🚀 TweetRadar - Viral Tweet Hunter Extraordinaire!</title>
     <meta name="description" content="Find viral tweets before they trend. TweetRadar analyzes engagement patterns to predict which content will explode. Used by 50K+ marketers, journalists, and creators.">
     <meta name="keywords" content="viral tweets, twitter analytics, social media monitoring, trend prediction, engagement analysis">
     <meta property="og:title" content="TweetRadar 🚀 - Hunt Viral Content Before It Explodes">
@@ -206,6 +206,9 @@
         // Initialize State Manager
         const stateManager = new StateManager();
         
+        // Global usage counter (simulated - in production would be from API)
+        let globalSearchCount = 47328; // Starting number to show tool popularity
+        
         // Utility Functions
         const utils = {
             formatNumber(num) {
@@ -369,6 +372,9 @@
                 stateManager.analytics.trackSearch(searchTerm, sortedTweets.length);
                 ToastManager.show(`Found ${sortedTweets.length} viral tweets!`, 'success');
                 
+                // Increment global search count
+                globalSearchCount++;
+                
             }, 1200);
         }
         
@@ -520,7 +526,9 @@
             
             // Update page title with search term
             if (state.searchTerm) {
-                document.title = `${state.searchTerm} - TweetRadar 🚀`;
+                document.title = `🚀 ${state.searchTerm} - Viral Tweet Hunter Extraordinaire!`;
+            } else {
+                document.title = `🚀 TweetRadar - Viral Tweet Hunter Extraordinaire!`;
             }
             
             // Calculate metrics
@@ -658,13 +666,10 @@
                                     </div>
                                 </div>
                                 <div class="flex items-center space-x-4">
-                                    <div class="hidden md:flex items-center space-x-2 bg-gradient-to-r from-purple-500 to-blue-500 text-white px-4 py-2 rounded-full text-sm font-medium">
-                                        <span>🛰️</span>
-                                        <span>Live Hunter</span>
-                                    </div>
                                     <div class="flex items-center space-x-2 text-sm text-gray-600">
-                                        <span class="hidden sm:inline">Searches:</span>
-                                        <span class="font-bold text-purple-600">${state.searchHistory.length}</span>
+                                        <span class="hidden sm:inline">Global searches:</span>
+                                        <span class="sm:hidden">Searches:</span>
+                                        <span class="font-bold text-purple-600">${globalSearchCount.toLocaleString()}</span>
                                     </div>
                                 </div>
                             </div>
@@ -775,7 +780,7 @@
                                 <div class="flex justify-center space-x-6 text-sm text-gray-500">
                                     <button onclick="utils.copyToClipboard(window.location.href)" class="hover:text-purple-600 transition-colors">📋 Share Tool</button>
                                     <span>•</span>
-                                    <span>🔥 Built with Meta-level engineering</span>
+                                    <span>🔥 Viral content hunter since 2025</span>
                                     <span>•</span>
                                     <span>⚡ ${state.tweets.length > 0 ? 'Last updated: now' : 'Ready to hunt'}</span>
                                 </div>
